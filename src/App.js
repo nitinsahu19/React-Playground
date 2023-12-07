@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MovieList from "./components/MovieList";
+import InputForm from "./components/InputForm";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -31,10 +32,13 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  useEffect(() => fetchMovieHandler(), []);
+  useEffect(() => fetchMovieHandler(), [fetchMovieHandler]);
 
   return (
     <>
+      <section>
+        <InputForm />
+      </section>
       <section>
         {isLoading && <p className="loading-text">Loading...</p>}
         {!error && <MovieList movies={movies} />}
