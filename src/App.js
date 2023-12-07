@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MovieList from "./components/MovieList";
 import InputForm from "./components/InputForm";
+import Movie from "./components/Movie";
 
 function App() {
   const [movies, setMovies] = useState([]);

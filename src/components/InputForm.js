@@ -32,7 +32,6 @@ const InputForm = () => {
     );
 
     const data = await response.json();
-    console.log(data);
 
     setTitle("");
     setOpeningText("");
