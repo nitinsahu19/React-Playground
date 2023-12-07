@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MovieList from "./components/MovieList";
 
@@ -7,7 +7,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchMovieHandler = async () => {
+  const fetchMovieHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -29,21 +29,15 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  };
+  }, []);
+
+  useEffect(() => fetchMovieHandler(), []);
+
   return (
     <>
       <section>
-        <button className="btn" onClick={fetchMovieHandler}>
-          Fetch Movies
-        </button>
-      </section>
-      <section>
-        {!isLoading && movies.length > 0 && <MovieList movies={movies} />}
-        {!isLoading && movies.length == 0 && !error && (
-          <p className="loading-text">Movies not found !!! </p>
-        )}
         {isLoading && <p className="loading-text">Loading...</p>}
-        {!isLoading && error && <p className="loading-text">{error}</p>}
+        {!error && <MovieList movies={movies} />}
       </section>
     </>
   );
