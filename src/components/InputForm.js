@@ -12,7 +12,7 @@ const InputForm = () => {
 
   const releaseDateHandler = (event) => setReleaseDate(event.target.value);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     const newMovie = {
       title,
@@ -20,8 +20,19 @@ const InputForm = () => {
       "release-date": releaseDate,
     };
 
-    // printing the new movie on browser-console
-    console.log(newMovie);
+    const response = await fetch(
+      "https://react-http-caada-default-rtdb.firebaseio.com/movies.json",
+      {
+        method: "POST",
+        body: JSON.stringify(newMovie),
+        headers: {
+          "Content-type": "applicaiton/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log(data);
 
     setTitle("");
     setOpeningText("");
