@@ -1,14 +1,15 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 const MainHeader = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/welcome">
+        <NavLink className="navbar-brand nav-link" to="/welcome">
           Welcome Page
-        </a>
-        <a className="navbar-brand" href="/products">
+        </NavLink>
+        <NavLink className="navbar-brand" to="/products">
           Products Page
-        </a>
+        </NavLink>
       </nav>
     </>
   );
